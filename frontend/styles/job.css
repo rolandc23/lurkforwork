@@ -1,0 +1,10 @@
+.jobPost {
+    width: 90%;
+    height: 20px;
+    border-radius: 5px;
+    border-color: grey;
+}
+
+.addjobpost {
+    border: 1px solid black;
+}

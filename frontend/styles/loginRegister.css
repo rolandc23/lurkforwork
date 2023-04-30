@@ -1,0 +1,78 @@
+#loginpage, #registerpage {
+    text-align: left;
+}
+
+h3 {
+    text-align: center;
+}
+
+#name, #registeremail, #registerpassword, #confirmpw, #loginemail, #loginpassword {
+    width: 100%
+}
+
+#pageToggle, #login, #signup, .register {
+    width: 100%
+}
+
+#login, #signup {
+    text-decoration: none;
+    box-shadow: none;
+    font: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px transparent;
+    color: white;
+    background: #0a66c2; 
+}
+
+#login:hover, #signup:hover , #headerLogin:hover {
+    background: #084484;
+}
+
+#signup.noHover, #savechanges.noHover {
+    background: grey;
+    pointer-events: none;
+}
+
+.register {
+    text-decoration: none;
+    box-shadow: none;
+    font: inherit;
+    
+    font-size: 15px;
+    padding: 8px;
+    border-radius: 20px;
+    border: 2px solid #0a66c2;
+    color: #0a66c2;
+    background: white;
+}
+
+.register:hover, #headerSignUp:hover {
+    border: 2px solid #084484;
+    color: #084484;
+    background: #f8f4f4;
+}
+
+input[type=text],  input[type=password]{
+    margin-top: 5px;
+    border: 1px solid grey;
+    border-radius: 6px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    width: 80%;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: lightblue;
+}
+
+form {
+    width: 500px;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px 25px;
+    background-color: white;
+    border-radius: 20px;
+}

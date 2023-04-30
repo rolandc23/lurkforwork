@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LurkForWork</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module" src="src/main.js"></script>
+    <!-- You can add your styles and scripts here -->
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/global.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/loginRegister.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/job.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/profile.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/sizes.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="LFWcontainer" id="lfw">
+            <h1>LurkForWork</h1>
+            <button class="homeBtn" id="homeBtn">
+                <img class="homeIcon" height ="35" width="35" src="styles/homeButton.svg">
+            </button>
+        </div>
+        <div id="searchbar" class="hidden">
+            <input type="text" placeholder="Search jobs" id="searchjobtext" onchange='checkIfString()'>
+            <button type="button" id="searchjobbtn" class="blueButton" onclick='searchJob()' disabled>Search</button>
+        </div>
+        <div class="headerIcons" id="hIcons">
+            <button id="headerLogin" onclick='getLoginPage()'>Login</button>
+            <button id="headerSignUp" onclick='getRegisterPage()'>Sign Up</button>
+            <div class="loggedInIcons" id="loggedInIcons"></div>
+        </div>
+    </header>
+    <main id="loginpage">
+        <form id="loginform" name="loginform" onkeypress="return event.keyCode != 13">
+            <!-- Headings for the form -->
+            <div class="headingsContainer">
+                <h3>Log in</h3>
+            </div>
+            <!-- Main container for all inputs -->
+            <div class="mainContainer">
+                <!-- Username -->
+                <label for="email">Email</label>
+                <br>
+                <input type="text" placeholder="Enter Email" name="email" id='loginemail'>
+                <br><br>
+                <!-- Password -->
+                <label for="pw">Password</label>
+                <br>
+                <input type="password" placeholder="Enter Password" name="pw" id='loginpassword'>
+                <!-- Submit button -->
+                <p><button type="button" id="login" onclick='handleLogin()'>Login</button></p>
+                <p><button type="button" class="register" onclick='getRegisterPage()'>Not a member? Register here!</button></p>
+                <p><button type="button" class="register" onclick='getForgotPwForm()'>Forgot password?</button></p>
+            </div>
+        </form>
+        <!-- Sign up link -->
+    </main>
+    <main id="forgotPwForm" class="hidden">
+        <form id="forgotpwform" name="forgotpwform" onkeypress="return event.keyCode != 13">
+            <div class="closeButtonContainer">
+                <div onclick="closeForgotPwForm()" class="close topright">&times;</div>
+            </div>
+            <div class="headingsContainer">
+                <h3>Forgot Password?</h3>
+            </div>
+            <!-- Main container for all inputs -->
+            <div class="formInputs">
+                <label for="email">Email</label>
+                <br>
+                <input type="text" placeholder="Enter Email" name="email" onblur="renderForgotPw()">
+                <p class="hidden" id="invalidforgotpwemail" name="invalidform">Please enter a valid email</p>
+                <br><br>
+                <!-- Name -->
+                <label for="name">User ID</label>
+                <br>
+                <input type="text" placeholder="Enter user ID" name="id" onblur="renderForgotPw()">
+                <p class="hidden" id="invalidforgotpwid" name="invalidform">Please enter a valid ID</p>
+                <br>
+                <br>
+            </div>
+            <div id="forgotpwbuttondiv"></div>
+        </form>
+    </main>
+    <main id="newPw" class="hidden">
+        <form id="newPwForm" name="newPwForm" onkeypress="return event.keyCode != 13">
+            <div class="headingsContainer">
+                <h3>New Password Form</h3>
+            </div>
+            <!-- Main container for all inputs -->
+            <div class="formInputs">
+                <label for="password">New Password</label>
+                <br>
+                <input type="password" placeholder="Enter Password" name="pw" onblur="renderNewPw()">
+                <p class="hidden" id="invalidnewpw" name="invalidform">Please enter a valid password</p>
+                <br><br>
+                <!-- Name -->
+                <label for="name">Confirm New Password</label>
+                <br>
+                <input type="password" placeholder="Confirm Password" name="confirmpw" onblur="renderNewPw()">
+                <p class="hidden" id="invalidnewconfirmpw" name="invalidform">Please make sure you have entered the same password</p>
+                <br>
+                <br>
+            </div>
+            <div id="newpwsubmitdiv"></div>
+        </form>
+    </main>
+    <main id="registerpage" class="hidden">
+        <form id="registerform" name="registerform" onkeypress="return event.keyCode != 13">
+            <!-- Headings for the form -->
+            <div class="headingsContainer">
+                <h3>Sign Up</h3>
+            </div>
+            <!-- Main container for all inputs -->
+            <div class="mainContainer">
+                <!-- Email -->
+                <label for="email">Email</label>
+                <br>
+                <input type="text" placeholder="Enter Email" name="email" id='registeremail' onblur="render()">
+                <p class="hidden" id="invalidemail" name="invalidform">Please enter a valid email</p>
+                <br><br>
+                <!-- Name -->
+                <label for="name">Name</label>
+                <br>
+                <input type="text" placeholder="Enter Name" name="name" id='name' onblur="render()">
+                <p class="hidden" id="invalidnameshort" name="invalidform">Name is too short</p>
+                <p class="hidden" id="invalidnamelong" name="invalidform">Name is too long</p>
+                <br><br>
+                <!-- Password -->
+                <label for="pw">Password</label>
+                <br>
+                <input type="password" placeholder="Enter Password" name="pw" id='registerpassword' onblur="render()">
+                <p class="hidden" id="invalidpw" name="invalidform">Password is less than 6 characters</p>
+                <br><br>
+                <!-- Confirm Password -->
+                <label for="confirmpw">Confirm Password</label>
+                <br>
+                <input type="password" placeholder="Confirm Password" name="confirmpw" id='confirmpw' onblur="render()">
+                <p class="hidden" id="pwnotmatching" name="invalidform">Passwords do not match</p>
+                <br>
+                <br>
+                <!-- Submit button -->
+                <button type="button" class="noHover" id="signup" onclick='handleRegister()' disabled>Sign Up</button>
+                <p><button type="button" class="register" onclick='getLoginPage()'>Already a member? Login here!</button></p>
+            </div>
+        </form>
+    </main>
+    <main id="feedpage" class="hidden">
+        <div id="feed"></div>
+    </main>
+    <main id="suggestedUsers">
+        <div id="userList"></div>
+    </main>
+    <main id="profilepage" class="hidden">
+        <div id="profile">
+            <div id="profiledeets"></div>
+            <div id="profileposts"></div>
+        </div>
+    </main>
+    <main id="editprofilepage" class="hidden">
+        <div id="editdiv">
+            <form id="editprofileform" name="editprofileform" onkeypress="return event.keyCode != 13">
+                <!-- Headings for the form -->
+                <div class="headingsContainer">
+                    <h3>Edit Profile</h3>
+                </div>
+                <!-- Main container for all inputs -->
+                <div class="mainContainer">
+                    <!-- Email -->
+                    <label for="email">Change Email</label>
+                    <br>
+                    <input type="text" placeholder="Enter Email" name="email" id='editemail'>
+                    <p class="hidden" id="invalideditemail" name="invalidform">Please enter a valid email</p>
+                    <br><br>
+                    <!-- Name -->
+                    <label for="namechange">Change Name</label>
+                    <br>
+                    <input type="text" placeholder="Enter Name" name="name" id='editname'>
+                    <p class="hidden" id="invalideditnameshort" name="invalidform">Name is too short</p>
+                    <p class="hidden" id="invalideditnamelong" name="invalidform">Name is too long</p>
+                    <br><br>
+                    <!-- Password -->
+                    <label for="pw">Edit Password</label>
+                    <br>
+                    <input type="password" placeholder="Enter Password (leave blank if you want to keep it the same)" name="pw" id='editpassword'>
+                    <p class="hidden" id="invalideditpw" name="invalidform">Password is less than 6 characters</p>
+                    <br><br>
+                    <label for="confirmpw">Confirm Password</label>
+                    <br>
+                    <input type="password" placeholder="Confirm Password" name="confirmpw" id='confirmeditpw'>
+                    <p class="hidden" id="editpwnotmatching" name="invalidform">Passwords do not match</p>
+                    <br><br>
+                    <!-- Upload -->
+                    <label for="image">Upload Image</label>
+                    <br>
+                    <input type="file" name="uploadfile" id='uploadfile'>
+                    <br>
+                    <div id="resetBtnContainer"></div>
+                    <br><img id="myImg" src="#">    
+                    <p class="hidden" id="invalidfile" name="invalidform">Uploaded file needs to be png/jpeg/jpg format</p>
+                    <br>
+                    <br>
+                    <!-- Submit button -->
+                    <button type="button" class="noHover" id="savechanges" disabled>Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <main id="addjobpostMain" class="hidden">
+        <form id="addjobpost" class="addjobpost" name="addjobpost" onkeypress="return event.keyCode != 13">
+            <!-- Headings for the form -->
+            <div class="closeButtonContainer">
+                <div onclick="closeAddJobPostPopup()" class="close topright">&times;</div>
+            </div>
+            <div class="headingsContainer">
+                <h3 id="jobformheader"></h3>
+            </div>
+            <!-- Main container for all inputs -->
+            <div class="mainContainer">
+                <!-- Title -->
+                <label for="title">Job Title</label>
+                <br>
+                <input type="text" class="jobPost" placeholder="Enter Job Title" name="addjobtitle" id='addjobtitle'>
+                <p class="hidden" id="invalidjobtitle" name="invalidform">Please enter a job title</p>
+                <br><br>
+                <!-- Start -->
+                <label for="start">Job Start Date</label>
+                <br>
+                <input type="date" class="jobPost" placeholder="Enter Date" name="editdate" id='editdate'>
+                <p class="hidden" id="invaliddate" name="invalidform">Please enter a date</p>
+                <br><br>
+                <!-- Description -->
+                <label for="jobdesc">Job Description</label>
+                <br>
+                <textarea class="jobPost" placeholder="Describe your job post" name="editjobdesc" id='editjobdesc'></textarea>
+                <p class="hidden" id="invalidjobdesc" name="invalidform">Please enter a job description</p>
+                <br><br>
+                <!-- Upload Image -->
+                <label for="image" id="uploadJobImg">Upload Image</label>
+                <br>
+                <input type="file" name="uploadjobfile" id='uploadjobfile'>
+                <br><img id="jobImg" src="#">
+                <p class="hidden" id="invalidjobfile" name="invalidform">Uploaded file needs to be png/jpeg/jpg format</p>
+                <br>
+                <br>
+                <!-- Submit button -->
+                <div id="jobAction"></div>
+                <!-- <button type="button" class="hidden noHover" id="postJob" disabled>Post Job</button>
+                <button type="button" class="hidden noHover" id="updateJob" disabled>Update Job</button> -->
+            </div>
+        </form>
+    </main>
+    <main id="addemailMain" class="hidden">
+        <form id="emailform" name="emailform" onkeypress="return event.keyCode != 13">
+            <!-- Headings for the form -->
+            <div class="closeButtonContainer">
+                <div onclick="closeAddEmailPopup()" class="close topright">&times;</div>
+            </div>
+            <div class="inputContainer">
+                <h3>Watch another user via email</h3>
+                <label for="email">Enter another user's email</label>
+                <br>
+                <input type="text" placeholder="Enter Email" name="email" id='watchEmail'>
+                <p class="hidden" id="invalidwatchemail" name="invalidform">Please enter a valid email</p>
+                <br><br>
+                <div id="addEmailContainer"></div>
+            </div>
+            <!-- Main container for all inputs -->
+        </form>
+    </main>
+    <main id="popupMain" class="hidden">
+        <form onkeypress="return event.keyCode != 13">
+            <!-- Headings for the form -->
+            <div class="closeButtonContainer">
+                <div onclick="document.getElementById('popupMain').classList.add('hidden')" class="close topright">&times;</div>
+            </div>
+            <div class="headingsContainer">
+                <h3>Alert!</h3>
+            </div>
+            <!-- Main container for all inputs -->
+            <div class="mainContainer" id="popupMessage"></div>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; lurkforwork.com 2022</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,243 @@
+/* base styles, feel free to edit */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    text-align: center;
+    height: 100%;
+    background-color: #f3f2ef;
+}
+
+.hidden {
+    display: none;
+}
+
+p[name="invalidform"] {
+    color: red;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    background-color: white;
+    color: #084484;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #e0dfdc;
+}
+
+footer {
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    bottom: 0;
+    width: 100%; 
+    background-color: white;
+    border-top: 1px solid #e0dfdc;
+}
+
+.LFWcontainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.homeIcon {
+    margin: 0;
+}
+
+.headerIcons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#headerLogin, #headerSignUp {
+    text-decoration: none;
+    box-shadow: none;
+    font: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 3px 15px;
+    border-radius: 10px;
+    border: 1px transparent;
+    color: white;
+    background: #0a66c2; 
+}
+
+#headerSignUp {
+    border: 2px solid #0a66c2;
+    color: #0a66c2;
+    background: white;
+}
+
+.links:hover {
+    text-decoration: underline;
+}
+
+#imageBtn:hover {
+    opacity: 50%;
+}
+
+.homeBtn {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+}
+
+button:hover {
+    opacity: 50%;
+}
+
+#myImg, #jobImg {
+    width: 80px;
+    height: 80px;
+}
+
+textarea{
+    width: 100%;
+    resize: none;
+    height: 20px;
+    outline: none;
+    font-size: 14px;
+    font-style: Arial;
+    margin: 0;
+    border-radius: 5px;
+    max-height: 330px;
+    caret-color: #4671EA;
+    border: 1px solid #bfbfbf;
+}
+
+textarea::-webkit-scrollbar {
+    width: 0px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-family: Arial;
+  }
+
+#addjobpostMain, #popupMain, #addemailMain, #forgotPwForm, #newPw {
+    position: fixed;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#feed, #profile {
+    position: absolute;
+    width: 100%;
+    /* height: 100%; */
+    display: flex none;
+    flex-direction: column;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    align-self: center;
+    /* height: 750px; */
+    justify-self: center;
+    /* overflow-y: scroll; */
+}
+
+#editprofilepage {
+    position: absolute;
+    display: flex none;
+    width: 100%;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+    padding-bottom: 50px;
+}
+
+#loginpage, #registerpage {
+    position: absolute;
+    width: 100%;
+}
+
+.blueButton {
+    border-radius: 10px;
+    border: 2px solid #084484;
+    background-color: white;
+    color: #084484;
+}
+
+.blueBtnToggleSmall {
+    font-weight: normal;
+    border: 1px solid #0a66c2;
+    border-radius: 10px;
+    background-color: white;
+    color: #0a66c2;
+}
+
+.blogPost {
+    position: relative;
+    width: 500px;
+    padding: 20px 25px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #e0dfdc;
+    text-align: left;
+    margin: auto;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.dropdownBox {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    width: fit-content;
+    padding: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.blueBtnToggleBig {
+    font-weight: bold;
+    border-radius: 10px;
+    border: 2px solid #084484;
+    background-color: white;
+    color: #084484;
+}
+
+.close {
+    border: none;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: darkgrey;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.close:hover {
+    color: black;
+    background-color: grey;
+}
+
+.closeButtonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+/* 
+#constrained-container {
+    height: 300px;
+    overflow-y: scroll;
+}
+  
+#very-long-content {
+    height: 600px;
+} */
